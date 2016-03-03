@@ -4,6 +4,7 @@ package leetcode;
  * Created by Suheng on 3/3/16.
  */
 public class Problem331 {
+
     public static void main(String[] args) {
 
         System.out.println(isValidSerialization_2("9,3,4,#,#,1,#,#,2,#,6,#,#"));
