@@ -28,7 +28,6 @@ public class Problem331 {
                 diff += 2;
             }
         }
-
         return diff == 0;
     }
 }
