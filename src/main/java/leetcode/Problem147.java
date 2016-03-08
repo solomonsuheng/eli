@@ -7,16 +7,40 @@ public class Problem147 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ListNode head = initNode(nums);
-        printNode(insertionSortList(head));
+        printNode(head);
     }
+
 
     public static ListNode insertionSortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode result = new ListNode(0);
+        ListNode pointer = head.next;
 
-        return null;
+        head.next = null;
+        ListNode headpointer = head;
+        while (pointer != null) {
+            ListNode tmp = pointer;
+            pointer = pointer.next;
+
+            while (headpointer.next != null) {
+                if (tmp.val > headpointer.val) {
+                    headpointer = headpointer.next;
+                } else {
+                    headpointer.next = tmp;
+                    int tt = headpointer.val;
+                    headpointer.val = tmp.val;
+                    tmp.val = tt;
+                }
+            }
+            if (headpointer.val < tmp.val) {
+                headpointer.next = tmp;
+            }
+
+
+        }
+
+        return head;
     }
 
     public static void reverPrintNode(ListNode head) {
