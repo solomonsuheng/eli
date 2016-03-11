@@ -2,6 +2,7 @@ package leetcode;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by Suheng on 3/4/16.
@@ -30,7 +31,62 @@ public class Problem111 {
 
         System.out.println("\nThe deep");
         System.out.println(getDepthRec(treeNode));
+        System.out.println(sumNumbers(treeNode));
+        System.out.println("\nmaxPathSum" + maxPathSum(treeNode));
     }
+
+    public static int total = 0;
+
+    private static int maxPathSum(TreeNode treeNode) {
+        help(treeNode);
+        return total;
+    }
+
+    public static void help(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            System.out.print(cur.val);
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
+
+    }
+
+    public static int sumNumbers(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        return sumR(root, 0);
+    }
+
+    public static int sumR(TreeNode root, int x) {
+        if (root.right == null && root.left == null) {
+            return 10 * x + root.val;
+        }
+        int val = 0;
+        if (root.left != null) {
+            val += sumR(root.left, 10 * x + root.val);
+        }
+        if (root.right != null) {
+            val += sumR(root.right, 10 * x + root.val);
+
+        }
+
+        return val;
+    }
+
 
     public static int getDepthRec(TreeNode root) {
         if (root == null) {
