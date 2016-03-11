@@ -8,8 +8,56 @@ public class Problem147 {
         int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         ListNode head = initNode(nums);
         printNode(head);
+        System.out.println(isCircle(head));
     }
 
+    /**
+     * Problem 142
+     */
+    public static ListNode detectCycle(ListNode head) {
+        if (!isCircle(head)) {
+            return null;
+        }
+        ListNode tmpSlow = head.next;
+        ListNode tmpFast = head.next.next;
+
+        while (tmpSlow != tmpFast) {
+            tmpFast = tmpFast.next.next;
+            tmpSlow = tmpSlow.next;
+        }
+        tmpSlow = head;
+        while (tmpSlow != tmpFast) {
+            tmpFast = tmpFast.next;
+            tmpSlow = tmpSlow.next;
+        }
+
+        return tmpFast;
+
+    }
+
+    public static boolean isCircle(ListNode head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        ListNode tmpSlow = head;
+        ListNode tmpFast = head.next;
+        boolean flag = true;
+        while (tmpSlow != tmpFast && tmpFast != null) {
+            if (flag) {
+                tmpFast = tmpFast.next;
+                tmpSlow = tmpSlow.next;
+                flag = false;
+            } else {
+                tmpFast = tmpFast.next;
+                flag = true;
+            }
+        }
+        if (tmpFast != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static ListNode insertionSortList(ListNode head) {
         if (head == null || head.next == null) {
