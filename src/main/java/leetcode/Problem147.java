@@ -12,6 +12,37 @@ public class Problem147 {
     }
 
     /**
+     * Problem 203
+     */
+
+    public static ListNode removeElement(ListNode head, int val) {
+        if (head == null) {
+            return head;
+        }
+        ListNode tmpHead = new ListNode(-1);
+        tmpHead.next = head;
+
+        ListNode cur = tmpHead.next;
+        ListNode pre = tmpHead;
+
+        while (cur != null) {
+            boolean flag = true;
+            if (cur.val == val) {
+                flag = false;
+                pre.next = cur.next;
+            }
+
+            if (flag) {
+                pre = pre.next;
+            }
+
+            cur = cur.next;
+        }
+        return tmpHead.next;
+
+    }
+
+    /**
      * Problem 142
      */
     public static ListNode detectCycle(ListNode head) {
