@@ -12,6 +12,20 @@ public class Problem147 {
     }
 
     /**
+     * Problem 237
+     */
+    public static void deleteNode(ListNode node) {
+        if (node == null || node.next == null) {
+            return;
+        }
+
+        node.val = node.next.val;
+
+        node.next = node.next.next;
+
+    }
+
+    /**
      * Problem 203
      */
 
