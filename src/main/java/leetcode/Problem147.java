@@ -12,6 +12,26 @@ public class Problem147 {
     }
 
     /**
+     * Problem 206
+     */
+    public static ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode tmpHead = new ListNode(-1);
+
+
+        while (head != null) {
+            ListNode cur = head.next;
+            head.next = tmpHead.next;
+            tmpHead.next = head;
+            head = cur;
+        }
+        return tmpHead.next;
+    }
+
+    /**
      * Problem 237
      */
     public static void deleteNode(ListNode node) {
