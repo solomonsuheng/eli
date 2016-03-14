@@ -5,11 +5,82 @@ package leetcode;
  */
 public class Problem147 {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        int[] nums = {1, 2, 2, 1};
         ListNode head = initNode(nums);
-        printNode(head);
-        System.out.println(isCircle(head));
+
+        System.out.println(isPalindrome(head));
     }
+
+
+    /**
+     * Problem 234
+     */
+
+    public static boolean isPalindrome(ListNode head) {
+        boolean flag = true;
+
+        if (head == null) {
+            return false;
+        }
+
+        ListNode slowPointer = head;
+        ListNode fastPointer = head;
+        while (fastPointer != null) {
+            if (flag) {
+                slowPointer = slowPointer.next;
+                flag = false;
+            } else {
+                flag = true;
+            }
+            fastPointer = fastPointer.next;
+        }
+
+
+        //fastPointer point to the end
+        //reverse slowpointer
+        //set fastPointer to the head
+        fastPointer = head;
+        printNode(slowPointer);
+        slowPointer = reverseList(slowPointer);
+        printNode(slowPointer);
+        flag = true;
+        while (slowPointer != null) {
+            if (fastPointer.val != slowPointer.val) {
+                System.out.println(slowPointer.val+" "+ fastPointer.val);
+                flag = false;
+                break;
+            }
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next;
+        }
+
+        return flag;
+    }
+
+    /**
+     * reverse listnode
+     */
+
+    public static ListNode reverseListNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        //create a tmp head to point the head
+        ListNode tmpHead = new ListNode(-1);
+        tmpHead.next = head;
+        ListNode cur = head;
+
+        while (cur.next != null) {
+            tmpHead.next = cur.next;
+            cur.next = cur.next.next;
+            tmpHead.next.next = cur;
+            cur = cur.next;
+        }
+
+        return tmpHead.next;
+    }
+
 
     /**
      * Problem 206
@@ -21,6 +92,7 @@ public class Problem147 {
 
         ListNode tmpHead = new ListNode(-1);
 
+        printNode(head);
 
         while (head != null) {
             ListNode cur = head.next;

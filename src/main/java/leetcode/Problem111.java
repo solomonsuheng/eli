@@ -38,7 +38,7 @@ public class Problem111 {
 
 
     public static TreeNode invertTree(TreeNode root) {
-        if(root==null){
+        if (root == null) {
             return root;
         }
 
@@ -46,10 +46,10 @@ public class Problem111 {
         root.left = root.right;
         root.right = tmp;
 
-        if(root.left!=null){
+        if (root.left != null) {
             invertTree(root.left);
         }
-        if(root.right!=null){
+        if (root.right != null) {
             invertTree(root.right);
         }
 
