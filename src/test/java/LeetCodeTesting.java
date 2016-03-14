@@ -1,5 +1,6 @@
 import leetcode.Problem241;
 import leetcode.Problem287;
+import leetcode.Problem32;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,4 +26,19 @@ public class LeetCodeTesting {
         assertEquals(5, p.findDuplicate(1, 2, 3, 4, 5, 6, 7, 8, 9, 5));
     }
 
+    @Test
+    public void testProblem32() throws Exception {
+        Problem32 problem32 = new Problem32();
+        assertEquals(2, problem32.longestValidParentheses("()"));
+        assertEquals(2, problem32.longestValidParentheses("(()"));
+        assertEquals(2, problem32.longestValidParentheses("())"));
+        assertEquals(2, problem32.longestValidParentheses("()))"));
+        assertEquals(2, problem32.longestValidParentheses("(((()"));
+
+        assertEquals(4, problem32.longestValidParentheses(")()())"));
+
+        assertEquals(6, problem32.longestValidParentheses("(()())"));
+        assertEquals(6, problem32.longestValidParentheses("()()()"));
+        assertEquals(6, problem32.longestValidParentheses("((()))"));
+    }
 }
