@@ -1,8 +1,6 @@
 import leetcode.Problem241;
 import leetcode.Problem287;
 import leetcode.Problem32;
-import leetcode.Problem49;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -44,12 +42,4 @@ public class LeetCodeTesting {
         assertEquals(6, problem32.longestValidParentheses("((()))"));
     }
 
-    @Test
-    public void testProblem49() throws Exception {
-
-        Problem49 p = new Problem49();
-
-
-
-    }
 }
