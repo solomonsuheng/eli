@@ -5,12 +5,65 @@ package leetcode;
  */
 public class Problem147 {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 2, 1};
+        int[] nums = {1, 2, 3};
         ListNode head = initNode(nums);
 
-        System.out.println(isPalindrome(head));
+        printNode(rotateRight(head, 20000));
     }
 
+
+    /**
+     * Problem 61
+     */
+    public static ListNode rotateRight(ListNode head, int k) {
+        if (k < 0 || head == null) {
+            return head;
+        }
+
+        ListNode cur = head;
+        ListNode pre = head;
+
+        k = k % (countSize(head));
+        for (int i = 0; i < k; i++) {
+            if (cur == null) {
+                return reverseList(head);
+            }
+            cur = cur.next;
+        }
+
+        if (cur == null) {
+            return head;
+        }
+        while (cur.next != null) {
+            cur = cur.next;
+            pre = pre.next;
+        }
+
+
+        cur.next = head;
+        head = pre.next;
+        pre.next = null;
+        return head;
+    }
+
+    /**
+     * 获取链表大小
+     */
+    public static int countSize(ListNode head) {
+        if (head == null) {
+            return 0;
+        }
+        int count = 0;
+
+
+        ListNode tmp = head;
+        while (tmp != null) {
+            count++;
+            ;
+            tmp = tmp.next;
+        }
+        return count;
+    }
 
     /**
      * Problem 234
@@ -46,7 +99,7 @@ public class Problem147 {
         flag = true;
         while (slowPointer != null) {
             if (fastPointer.val != slowPointer.val) {
-                System.out.println(slowPointer.val+" "+ fastPointer.val);
+                System.out.println(slowPointer.val + " " + fastPointer.val);
                 flag = false;
                 break;
             }
