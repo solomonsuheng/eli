@@ -8,9 +8,45 @@ public class Problem147 {
         int[] nums = {1, 2, 3};
         ListNode head = initNode(nums);
 
-        printNode(rotateRight(head, 20000));
+
+        ListNode h1 = initNode(1, 2, 5, 7, 8, 10);
+        ListNode h2 = initNode(3, 6, 7, 8, 12, 30);
+        printNode(h1);
+        printNode(h2);
+        printNode(mergeTwoLists(h1, h2));
     }
 
+
+    /**
+     * Problem 21
+     */
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        ListNode result = new ListNode(-1);
+        ListNode cur = result;
+
+        while (l1 != null && l2 != null) {
+            if (l1.val > l2.val) {
+                cur.next = l2;
+                l2 = l2.next;
+                cur = cur.next;
+                cur.next = null;
+            } else {
+                cur.next = l1;
+                l1 = l1.next;
+                cur = cur.next;
+                cur.next = null;
+            }
+        }
+
+        if (l1 != null) {
+            cur.next = l1;
+        }
+        if (l2 != null) {
+            cur.next = l2;
+        }
+        return result.next;
+    }
 
     /**
      * Problem 61
