@@ -12,7 +12,7 @@ public class Problem111 {
         TreeNode treeNode = null;
         treeNode = initBst(treeNode, 6);
         treeNode = initBst(treeNode, 5);
-        treeNode = initBst(treeNode, 7);
+        treeNode = initBst(treeNode, 10);
         treeNode = initBst(treeNode, 3);
         treeNode = initBst(treeNode, 4);
         treeNode = initBst(treeNode, 2);
@@ -33,9 +33,26 @@ public class Problem111 {
         System.out.println(getDepthRec(treeNode));
         System.out.println(sumNumbers(treeNode));
         System.out.println("\nmaxPathSum" + maxPathSum(treeNode));
-        levelVisited(invertTree(treeNode));
+        levelVisited(treeNode);
+        System.out.println(path(treeNode, 16, 0));
     }
 
+    public static boolean path(TreeNode treeNode, int target, int sum) {
+        if (treeNode == null) {
+            if (sum == target) {
+                return true;
+            }else{
+                return false;
+            }
+        }else {
+            sum += treeNode.val;
+            if (path(treeNode.left, target, sum)) {
+                return true;
+            } else {
+                return path(treeNode.right, target, sum);
+            }
+        }
+    }
 
     public static TreeNode invertTree(TreeNode root) {
         if (root == null) {
